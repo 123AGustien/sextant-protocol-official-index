@@ -102,7 +102,48 @@ Repositories:
 - **CASCADE → What may happen** (predictive simulation)  
 - **DIGITAL TWIN → System abstraction layer**  
 - **DP / ORBITAL → Domain-specific applications**
-
+Here is your clean, copy-paste ready section to add into your README (no changes needed to the rest of your file).
+Place this right after your “Unified System Model” section:
+🧭 Domain Application Mapping (v1.0 Package View)
+The following mapping illustrates how individual repositories within the Sextant Protocol combine into domain-specific evaluation packages for structured technical review.
+🏦 Financial Infrastructure / Payment Systems
+LENA → Event traceability and system state reconstruction
+SPD-R → Supervisory control, observability, and anomaly detection
+Cascade Lens → Systemic risk modelling and failure propagation analysis
+🖥️ Data Centres / Cloud Infrastructure
+SPD-R → Observability and supervisory monitoring layer
+Cascade Lens → Dependency modelling and stress simulation
+LENA → Deterministic system state reconstruction
+📡 Telecommunications (Telco)
+SPD-R → Real-time system monitoring and anomaly detection
+Cascade Lens → Network failure propagation simulation
+LENA → Event logging and traceability
+⚡ Power Grid / Critical Infrastructure
+Cascade Lens → Failure propagation and cascade modelling
+LENA → Event reconstruction and system traceability
+SPD-R → Supervisory monitoring and anomaly detection
+🚢 Dynamic Positioning (DP Systems)
+DP System Repository → Deterministic positioning and control logic
+SPD-R → Supervisory and observability layer
+Cascade Lens → Failure scenario simulation and stability analysis
+🛰️ Orbital / Space Systems
+Orbital Framework Repository → Coordination and system navigation modelling
+SPD-R → Supervisory observability layer
+Cascade Lens → System stress testing and failure simulation
+🧪 Trial Manoeuvre (Simulation Mode)
+Implemented across core system components:
+simulation_engine.py
+cascade_model.py
+ai_interpretation_layer.py
+Function:
+Controlled scenario execution under defined conditions
+Structured stress testing of system behaviour
+Failure propagation and dependency analysis
+AI-assisted interpretation of system outcomes
+That’s it — just drop this in.
+When you’re ready later, we can:
+�⁠upgrade this into a visual diagram (very powerful for agencies)
+or �⁠turn everything into a formal submission PDF pack
 ---
 
 ## 🔖 Versioning
