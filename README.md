@@ -1,3 +1,7 @@
+Alright—this version is much better in content, but visually it’s still a wall of text.
+If a reviewer opens this on GitHub, they’ll see a dense block instead of a structured document.
+👉 The issue now is formatting, not content.
+⚠️ What needs fixing (quick)
 
 🌐 Sextant Protocol – Official Submission Index (v1.0)
 Status: Stable Evaluation Snapshot
@@ -5,9 +9,13 @@ Type: Research Index
 Scope: Deterministic Resilience Framework
 License: MIT
 🧭 Overview
-The Sextant Protocol Official Submission Index provides a unified entry point to a suite of simulation-based research repositories focused on deterministic system modelling, infrastructure resilience, cascade failure simulation, and system observability.
-It brings together multiple domains including financial systems, cloud infrastructure, telecommunications, power systems, maritime dynamic positioning, and orbital system modelling.
-This index functions purely as a navigation and governance layer.
+The Sextant Protocol Official Submission Index provides a unified entry point to a suite of simulation-based research repositories focused on:
+Deterministic system modelling
+Infrastructure resilience analysis
+Cascade failure simulation
+System observability and traceability
+It spans multiple domains including financial systems, cloud infrastructure, telecommunications, power systems, maritime dynamic positioning, and orbital system modelling.
+This repository functions purely as a navigation and governance layer.
 It does not execute simulations or interact with live systems.
 🎯 Purpose
 This index exists to:
@@ -39,12 +47,12 @@ Cross-system observability
 Repository:
 spd-r-google-cloud-poc
 4. Domain Execution Layers
-Dynamic Positioning (DP Systems)
+🚢 Dynamic Positioning (DP Systems)
 Deterministic positioning and control modelling
 Supervisory stability architecture
 Repository:
 sextant-protocol-dp-system
-Orbital / Space Systems
+🛰️ Orbital / Space Systems
 System coordination and navigation modelling
 Multi-node orchestration concepts
 Repository:
@@ -56,30 +64,30 @@ Cascade → Predictive simulation (what may happen)
 DP / Orbital → Domain-specific applications
 🧭 Domain Application Mapping (v1.0 Package View)
 This framework can be evaluated as domain-specific packages:
-Financial Infrastructure / Payment Systems
+🏦 Financial Infrastructure / Payment Systems
 LENA → Traceability and system reconstruction
 SPD-R → Supervisory monitoring and control
 Cascade Lens → Systemic risk and failure modelling
-Data Centres / Cloud Infrastructure
+🖥️ Data Centres / Cloud Infrastructure
 SPD-R → Observability layer
 Cascade Lens → Dependency and stress modelling
 LENA → Deterministic reconstruction
-Telecommunications (Telco)
+📡 Telecommunications (Telco)
 SPD-R → Real-time monitoring
 Cascade Lens → Network failure propagation
 LENA → Event traceability
-Power Grid / Critical Infrastructure
+⚡ Power Grid / Critical Infrastructure
 Cascade Lens → Failure propagation modelling
 LENA → Event reconstruction
 SPD-R → Supervisory monitoring
-Dynamic Positioning (DP Systems)
+🚢 Dynamic Positioning (DP Systems)
 DP Repository → Positioning and control logic
 SPD-R → Supervisory layer
 Cascade Lens → Scenario simulation
-Orbital / Space Systems
+🛰️ Orbital / Space Systems
 Orbital Repository → Navigation and coordination modelling
 SPD-R → Supervisory observability
-Cascade Lens → Stress testing and system simulation
+Cascade Lens → Stress testing and simulation
 🧪 Trial Manoeuvre (Simulation Mode)
 Implemented across core components:
 simulation_engine.py
@@ -116,4 +124,4 @@ Email: donweerasekera@gmail.com
 Mobile: +65 80645753
 🧭 Closing Note
 This index consolidates multi-domain resilience modelling into a unified framework, enabling structured evaluation of complex interconnected systems across financial, infrastructure, maritime, and orbital environments.
-
+   
