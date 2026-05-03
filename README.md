@@ -1,7 +1,4 @@
-Alright—this version is much better in content, but visually it’s still a wall of text.
-If a reviewer opens this on GitHub, they’ll see a dense block instead of a structured document.
-👉 The issue now is formatting, not content.
-⚠️ What needs fixing (quick)
+
 
 🌐 Sextant Protocol – Official Submission Index (v1.0)
 Status: Stable Evaluation Snapshot
