@@ -1,4 +1,4 @@
-# 🌐 Sextant Protocol – Official Submission Index (v1.1)
+# 🌐 Sextant Protocol – Official Submission Index (v1.0)
 
 **Status:** Stable Evaluation  
 **Snapshot Type:** Research Index  
@@ -28,7 +28,7 @@ It does not execute simulations or interact with live systems.
 This index exists to:
 
 - Provide a single structured reference point for all repositories  
-- Establish a stable v1.0 evaluation snapshot  
+- Establish a stable **v1.0 evaluation snapshot**  
 - Map relationships across system layers and domains  
 - Support structured technical review and institutional routing  
 
