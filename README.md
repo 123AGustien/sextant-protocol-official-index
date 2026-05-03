@@ -1,4 +1,13 @@
+# 🌐 Sextant Protocol – Official Submission Index
 
+![Version](https://img.shields.io/badge/version-v1.0--locked-blue)
+![Status](https://img.shields.io/badge/status-stable%20snapshot-green)
+![Type](https://img.shields.io/badge/type-research%20index-lightgrey)
+![Scope](https://img.shields.io/badge/scope-deterministic%20resilience%20framework-orange)
+![License](https://img.shields.io/badge/license-MIT-informational)
+
+> ⚠️ **v1.0 Locked Release Snapshot**  
+> This repository is a stable, reference-only index for evaluation and review purposes.
 🌐 Sextant Protocol – Official Submission Index (v1.0)
 Overview
 The Sextant Protocol Official Submission Index provides a consolidated entry point to a suite of simulation-based research repositories focused on systems resilience, deterministic modelling, and infrastructure behaviour analysis.
