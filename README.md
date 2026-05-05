@@ -8,11 +8,17 @@
 ---
 
 # 🧭 Overview
+## Version Control
+
+This repository is locked as:
+v1.0 – Stable System Index Snapshot
+
+No structural changes will be made without version increment.
 
 The **Sextant Protocol Official Submission Index** provides a unified entry point to a suite of simulation-based research repositories focused on:
 
 - Deterministic system modelling  
-- Infrastructure resilience analysis  
+- Infrastructure resilienjce analysis  
 - Cascade failure simulation  
 - System observability and traceability  
 
