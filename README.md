@@ -130,8 +130,13 @@ Used for:
 ## 🖥️ Cloud Infrastructure
 - [spd-r-google-cloud-poc](https://github.com/123AGustien/spd-r-google-cloud-poc) → Observability  
 - [Sextant-Protocol](https://github.com/123AGustien/Sextant-Protocol) → Stress modelling  
-- [lena-vehicle-data-core](https://github.com/123AGustien/lena-vehicle-data-core) → Reconstruction  
+- [lena-vehicle-data-core](https://github.com/123AGustien/lena-vehicle-data-core) → Reconstruction
+- 
+## 🏢 Data Centre Systems (Simulation Layer)
 
+- [spd-r-google-cloud-poc](https://github.com/123AGustien/spd-r-google-cloud-poc) → Data centre observability and infrastructure monitoring simulation  
+- [Sextant-Protocol](https://github.com/123AGustien/Sextant-Protocol) → Load stress and failure propagation modelling across distributed compute environments  
+- [lena-vehicle-data-core](https://github.com/123AGustien/lena-vehicle-data-core) → Event traceability across infrastructure state changes
 ---
 
 ## 📡 Telecommunications
