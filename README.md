@@ -40,6 +40,11 @@ This repository functions purely as a **navigation and governance layer** and do
 
 # 🛰️ Satellite Systems & Space Dependency Layer (NSAS Context)
 
+## Why This Layer Matters
+
+This layer provides a structured way to evaluate how satellite-based systems can support national infrastructure continuity when terrestrial networks are degraded, disrupted, or unavailable.
+
+It positions space-based communications as a non-correlated external pathway, enabling resilience modelling across independent infrastructure domains.
 ## Purpose
 
 This layer defines satellite systems as an external dependency layer within the Sextant Protocol architecture. It extends system resilience modelling to include space-based communications and observational infrastructure as non-core but critical external support systems.
