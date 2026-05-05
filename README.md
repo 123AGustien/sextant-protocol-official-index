@@ -35,6 +35,65 @@ This repository functions purely as a **navigation and governance layer** and do
 - Stable v1.0 architecture snapshot  
 - Cross-domain system mapping  
 - Institutional and technical review structure
+
+- ---
+
+# 🛰️ Satellite Systems & Space Dependency Layer (NSAS Context)
+
+## Purpose
+
+This layer defines satellite systems as an external dependency layer within the Sextant Protocol architecture. It extends system resilience modelling to include space-based communications and observational infrastructure as non-core but critical external support systems.
+
+---
+
+## System Role
+
+Satellite systems are modelled as:
+
+- External communications relay layer (LEO / microsatellite networks)
+- Infrastructure redundancy pathway for continuity scenarios
+- Earth observation and environmental data input layer
+- Non-sovereign external dependency layer supporting system resilience
+
+This layer does not represent ownership, deployment, or operation of satellite assets.
+
+---
+
+## Architectural Position
+
+Within the Sextant Protocol hierarchy:
+
+- Core Layer: Digital infrastructure + system control logic  
+- Security Layer: Cyber resilience and failure containment systems  
+- Governance Layer: Routing logic and system observability  
+- External Dependency Layer: Satellite systems (NSAS context)
+
+---
+
+## NSAS Context Alignment (Singapore Space Ecosystem)
+
+This layer aligns conceptually with national space system development efforts coordinated through:
+
+- National Space Agency of Singapore (NSAS)  
+- Singapore Space and Technology Ltd  
+
+Satellite systems are treated as external augmentation layers supporting:
+
+- Communications continuity under degraded infrastructure conditions  
+- Environmental and maritime data acquisition  
+- Resilience modelling across distributed infrastructure systems  
+
+---
+
+## Dependency Logic
+
+Satellite systems are defined as:
+
+- Non-core infrastructure dependencies  
+- Activated under contingency or degraded operational states  
+- Supporting continuity when terrestrial systems are impaired  
+
+They are not modelled as primary control or sovereign communication infrastructure.
 - 
 # 🏦 Financial Systems (Simulation Layer Only)
 
@@ -343,6 +402,25 @@ Core components:
 - AI-assisted system interpretation  
 
 ---
+🛰️ Satellite Systems & Space Dependency Layer (NSAS Context)
+Purpose
+This layer defines satellite systems as an external dependency and resilience extension layer within the Sextant Protocol architecture.
+System Role
+Satellite systems are modelled as:
+External communications relay layer (LEO / microsatellite networks)
+Infrastructure redundancy pathway for continuity scenarios
+Earth observation and environmental data input layer
+This layer does not represent ownership or deployment of satellite assets.
+Architectural Position
+Core Layer: Digital infrastructure + control logic
+Security Layer: Cyber resilience (CSA context)
+Governance Layer: Routing logic (IMDA / GovTech context)
+External Dependency Layer: Satellite systems (NSAS context)
+NSAS Context Alignment
+Aligned conceptually with:
+National Space Agency of Singapore (NSAS)
+Singapore Space and Technology Ltd
+Satellite systems function as external resilience and communication support layers.
 
 # 🔖 Versioning
 
