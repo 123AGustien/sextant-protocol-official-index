@@ -85,7 +85,35 @@ Used for:
 - [lena-vehicle-data-core](https://github.com/123AGustien/lena-vehicle-data-core)  
 - [lena-replay-core](https://github.com/123AGustien/lena-replay-core)  
 
+---# ⚙️ Twin Engine Architecture Model
+
+The Sextant system operates on a dual-engine design:
+
+## 🧠 Engine 1 — Cascade Simulation Engine
+- [Sextant-Protocol](https://github.com/123AGustien/Sextant-Protocol)
+
+Responsible for:
+- Deterministic system modelling  
+- Dependency graph simulation  
+- Failure propagation analysis  
+
 ---
+
+## 📡 Engine 2 — Satellite Continuity Engine
+- [sextant-satellite-continuity-layer](https://github.com/123AGustien/sextant-satellite-continuity-layer)
+
+Responsible for:
+- Communication constraint simulation  
+- Network degradation modelling  
+- Non-terrestrial fallback conditions  
+
+---
+
+## 🔄 Interaction Model
+
+Cascade Engine → generates system state  
+Satellite Engine → applies communication constraints  
+Result → constrained deterministic system behaviour
 
 ## 🌊 Cascade Layer — Simulation & Forecasting
 
