@@ -117,7 +117,30 @@ Deterministic cascade failure modelling engine used for:
 - Dependency graph simulation  
 - Failure propagation analysis  
 - Systemic risk modelling (cross-domain abstraction)  
+v1.0 Stable Index — Patch Update (RP-04 Extension)
 
+This update reflects enhancements made to the RP-04 Cascade Lens simulation layer within the Sextant Protocol framework.
+
+Added Capabilities:
+
+- Bank outage and infrastructure failure scenarios (power, liquidity, settlement stress)
+- Deterministic cascade propagation under outage conditions
+- JSON engineering report layer ("result.json") for structured simulation output
+- Improved GitHub Actions reliability for automated execution and artifact generation
+
+System Behaviour Update:
+
+The model now supports extended operational risk simulation, including:
+
+- Data centre power failure scenarios
+- Regional liquidity stress propagation
+- Settlement node degradation modelling
+
+Note:
+
+This remains a sandbox-only deterministic simulation framework and does not interface with real financial systems.
+
+No change to core architecture or version classification (v1.0 stable retained).
 ---
 
 # 📡 Communication Constraint Layer
