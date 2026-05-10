@@ -266,7 +266,14 @@ Result → constrained deterministic system behaviour
 ## 🏦 Financial Systems
 - [lena-vehicle-data-core](https://github.com/123AGustien/lena-vehicle-data-core) → Traceability modelling  
 - [spd-r-google-cloud-poc](https://github.com/123AGustien/spd-r-google-cloud-poc) → Monitoring layer  
-- [Sextant-Protocol](https://github.com/123AGustien/Sextant-Protocol) → Risk and stress simulation  
+- [Sextant-Protocol](https://github.com/123AGustien/Sextant-Protocol) → Risk and simulation
+- 🏦 Financial Systems (Simulation Layer Only)
+Sextant Protocol (Cascade Simulation Framework)
+RP-04 Stable Baseline Release
+lena-vehicle-data-core
+spd-r-google-cloud-poc simulation
+
+- 
 
 ---
 
@@ -323,7 +330,12 @@ All domain references represent **simulation-based modelling environments only**
 
 - Sextant-Protocol → Financial-style stress simulation and cascade modelling  
 - lena-vehicle-data-core → Event reconstruction for traceability modelling  
-- spd-r-google-cloud-poc → Observability and system monitoring simulation  
+- spd-r-google-cloud-poc → Observability and sysmonitoringring simulation
+- 🏦 Financial Systems (Simulation Layer Only)
+Sextant Protocol (Cascade Simulation Framework)
+RP-04 Stable Baseline Release
+lena-vehicle-data-core
+spd-r-google-cloud-poc
 
 ---
 
