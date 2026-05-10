@@ -123,13 +123,13 @@ Satellite systems are defined as:
 
 They are not modelled as primary control or sovereign communication infrastructure.
 - 
+
 🏦 Financial Systems (Simulation Layer Only)
 These repositories represent conceptual simulation frameworks for stress modelling, dependency propagation, observability, and system resilience analysis. They are not connected to live financial systems.
 Sextant Protocol (Cascade Simulation Framework) → Financial-style stress simulation and cascade modelling
-RP‑04 Stable Baseline Release→ Deterministic cascade lens baseline for failure propagation and systemic dependency modelling
+RP‑04 Stable Baseline Release → Deterministic cascade lens baseline for failure propagation and systemic dependency modelling
 lena-vehicle-data-core → Event reconstruction for traceability modelling
-spd-r-google-cloud-poc→ Observability and system monitoring simulation
-
+spd-r-google-cloud-poc → Observability and system monitoring simulation
 ---
 
 # 🧠 Cascade Simulation Core
