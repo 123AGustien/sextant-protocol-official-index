@@ -1,3 +1,5 @@
+Sextant Protocol – Official Submission Index (v1.0)
+
 # 🌐 Sextant Protocol – Official Submission Index (v1.0)
 
 **Status:** Stable Evaluation  
