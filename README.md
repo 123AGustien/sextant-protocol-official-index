@@ -1,12 +1,48 @@
-## 🧭 System Architecture Overview
 
+
+System Architecture Overview
 The Sextant Protocol ecosystem is a modular research framework for modelling infrastructure dependency, cascading system risk, and observability under AI-augmented conditions.
+It is organised as interconnected simulation and analysis layers across multiple domains.
+🧭 System Architecture Diagram
+1. High-Level Layer Flow
+Mermaid
+flowchart TD
+    A[Dependency Layer] --> B[Cascade Layer]
+    B --> C[Observability Layer]
+    C --> D[Risk Signal Layer]
+    D --> E[Control Layer - Conceptual]
+2. Risk Propagation Model
+Mermaid
+flowchart LR
+    D1[Infrastructure Dependency] --> C1[Failure Trigger]
+    C1 --> C2[Cascading Propagation]
+    C2 --> O1[Observability Delay]
+    O1 --> R1[Risk Signal Emergence]
+    R1 --> X1[Systemic Impact Zone]
+3. System Composition Map
+Mermaid
+flowchart TD
+    S1[Sextant Protocol Core Engine]
+    S2[SPD-R Observability Layer]
+    S3[LENA Traceability System]
+    S4[Orbital Resilience Framework]
+    S5[DP Control Simulation]
+    S6[Satellite Continuity Layer]
 
-It is organised into interconnected simulation and analysis layers across multiple domains.
-
----
-
-## 🧩 Core Repositories
+    S1 --> S2
+    S1 --> S3
+    S1 --> S4
+    S1 --> S5
+    S4 --> S6
+4. Control Loop Concept
+Mermaid
+flowchart TD
+    A1[Risk Detected] --> A2[Risk Scoring Engine]
+    A2 --> A3[Containment Decision]
+    A3 --> A4[Isolation Actions]
+    A4 --> A5[System Stabilisation]
+    A5 --> A6[Recalibration]
+    A6 --> A1
 
 - **Sextant Protocol (Core Simulation Engine)**  
   Deterministic cascade modelling engine for simulating dependency failures and systemic risk propagation.
@@ -27,12 +63,16 @@ It is organised into interconnected simulation and analysis layers across multip
 - **LENA Vehicle Data Core**  
   Event reconstruction and historical state modelling layer for traceability, replay analysis, and system audit simulation.
 
----
+--
+
 
 ## 🛰️ Orbital & Communication Systems
 
 - **Sextant Orbital Resilience Framework**  
-  Models orbital and satellite dependency structures, focusing on navigation resilience and non-terrestrial communication continuity.
+  Models orbital and satellite dependency structures with focus on navigation resilience and non-terrestrial communication continuity.
+
+- **Sextant Satellite Continuity Layer**  
+  Simulates communication degradation, fallback routing behaviour, and network resilience under failure conditions.
 
 - **Sextant Satellite Continuity Layer**  
   Simulates communication degradation, fallback routing, and network resilience under failure conditions.
