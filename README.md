@@ -1,3 +1,61 @@
+## 🧭 System Architecture Overview
+
+The Sextant Protocol ecosystem is a modular research framework for modelling infrastructure dependency, cascading system risk, and observability under AI-augmented conditions.
+
+It is organised into interconnected simulation and analysis layers across multiple domains.
+
+---
+
+## 🧩 Core Repositories
+
+- **Sextant Protocol (Core Simulation Engine)**  
+  Deterministic cascade modelling engine for simulating dependency failures and systemic risk propagation.
+
+- **Sextant Protocol Official Index (v1.0)**  
+  Central navigation hub consolidating all Sextant Protocol research and simulation modules.
+
+- **Sextant DP System (Dynamic Positioning Simulation)**  
+  Control logic simulation for maritime positioning and operational stability under environmental and system stress conditions.
+
+---
+
+## 🌐 Infrastructure & Observability Layer
+
+- **SPD-R Google Cloud POC**  
+  Cloud-based observability prototype for infrastructure telemetry, monitoring simulation, and system state tracking.
+
+- **LENA Vehicle Data Core**  
+  Event reconstruction and historical state modelling layer for traceability, replay analysis, and system audit simulation.
+
+---
+
+## 🛰️ Orbital & Communication Systems
+
+- **Sextant Orbital Resilience Framework**  
+  Models orbital and satellite dependency structures, focusing on navigation resilience and non-terrestrial communication continuity.
+
+- **Sextant Satellite Continuity Layer**  
+  Simulates communication degradation, fallback routing, and network resilience under failure conditions.
+
+---
+
+## 🔄 System Design Principle
+
+The ecosystem follows a layered abstraction model:
+
+Dependency Structure → Cascade Propagation → Observability → Risk Classification → Control (Conceptual)
+
+Each repository contributes to a specific stage of this system lifecycle.
+
+---
+
+## ⚠️ Scope
+
+All modules are:
+- Simulation-based
+- Research-oriented
+- Non-operational
+- Not connected to live infrastructure systems
 # 🌐 Sextant Protocol – Official Submission Index (v1.0)
 
 **Status:** Stable Evaluation  
