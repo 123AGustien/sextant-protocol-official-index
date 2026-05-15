@@ -44,6 +44,41 @@ flowchart TD
     A5 --> A6[Recalibration]
     A6 --> A1
 
+
+## 📊 System Risk Scoring Model (v1.2)
+
+Each subsystem is evaluated using four conceptual indicators:
+
+- **Dependency Strength (DS):** Degree of reliance on other systems  
+- **Propagation Sensitivity (PS):** Likelihood of cascading failure spread  
+- **Observability Delay (OD):** Time lag before failure detection  
+- **Coupling Density (CD):** Degree of interconnection between modules  
+
+---
+
+### 🧮 Risk Index (Conceptual Model)
+
+RI = (DS × PS × CD) / OD
+
+## 🔗 Dependency Weighting Model (v1.2)
+
+Each subsystem is treated as a node in a dependency graph:
+
+- High weight → critical infrastructure dependency
+- Medium weight → supporting system layer
+- Low weight → isolated analytical module
+
+- ## 🌊 Failure Propagation Behaviour (v1.2)
+
+System behaviour under failure conditions is classified as:
+
+- Linear → isolated failure  
+- Cascading → multi-node propagation  
+- Amplified → cross-domain acceleration  
+- Latent → delayed detection failure  
+
+This defines how risk spreads across the system graph.
+
 - **Sextant Protocol (Core Simulation Engine)**  
   Deterministic cascade modelling engine for simulating dependency failures and systemic risk propagation.
 
@@ -58,10 +93,12 @@ flowchart TD
 ## 🌐 Infrastructure & Observability Layer
 
 - **SPD-R Google Cloud POC**  
-  Cloud-based observability prototype for infrastructure telemetry, monitoring simulation, and system state tracking.
+  Cloud-based observability prototype for infrastructure telemetry, monitoring simulation, and OD
+
+  racking.
 
 - **LENA Vehicle Data Core**  
-  Event reconstruction and historical state modelling layer for traceability, replay analysis, and system audit simulation.
+  Event Mermaidstorical state modelling layer for traceability, replay analysis, and system audit simulation.
 
 --
 
@@ -280,6 +317,14 @@ Mobile: +65 80645753
 
 ---
 
-# 🧭 Closing Note
+# 🧭 Closing Note--n
 
-This index consolidates multi-domain resilience modelling into a unified deterministic framework for structured evaluation of complex systems.
+Dependency Mapping → Weighted Coupling → Cascade Propagation → Observability Lag → Risk Scoring → Control Response (Conceptual)
+
+
+
+
+
+
+
+
