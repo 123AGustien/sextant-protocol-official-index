@@ -1,20 +1,73 @@
- Sextant Protocol – Reference Architecture (v1.0)
+
+# Sextant Protocol – System Architecture Diagram (v1.0)
 
 ## 1. Purpose
 
-This document defines the Sextant Protocol as a **layered reference architecture** for modelling:
+This document provides a **visual structural representation** of the Sextant Protocol architecture, showing relationships between system layers, data flow, and risk propagation pathways.
 
-- AI-driven infrastructure dependencies  
-- cascading system failures  
-- observability limitations in complex distributed systems  
-- cross-domain system coupling risks  
-
-It provides a simplified structural view of the system for evaluation, analysis, and research alignment.
-
-This is a **modelling framework only** and does not operate live infrastructure systems.
+It is a conceptual diagram for analysis and evaluation.
 
 ---
 
-## 2. High-Level Architecture Overview
+## 2. High-Level System Diagram
++---------------------------+
+             |   EXECUTIVE BRIEF LAYER   |
+             |   (System Summary)        |
+             +------------+--------------+
+                          |
+                          v
++-----------------------------+-----------------------------+ |      RISK SIGNAL LAYER                                   | |  - Cascading Dependency Amplification                   | |  - Observability Lag                                   | |  - Layer Convergence                                   | +-----------------------------+-----------------------------+ | v +-----------------------------+-----------------------------+ |      OBSERVABILITY LAYER                                 | |  - Telemetry Concepts                                   | |  - System Monitoring                                    | |  - State Visibility                                    | +-----------------------------+-----------------------------+ | v +-----------------------------+-----------------------------+ |      CASCADE SIMULATION LAYER                            | |  - Failure Propagation                                 | |  - Systemic Risk Modelling                             | |  - Dependency Stress Testing                           | +-----------------------------+-----------------------------+ | v +-----------------------------+-----------------------------+ |      DEPENDENCY GRAPH LAYER                              | |  - Infrastructure Relationships                        | |  - Cross-Domain Coupling                               | |  - System Mapping                                      | +-----------------------------+-----------------------------+
+|
+                          v
+             +---------------------------+
+             |   CONTROL LAYER (FUTURE)  |
+             |   - Containment           |
+             |   - Isolation             |
+             |   - Mitigation            |
+             +---------------------------+
 
-The Sextant Protocol is structured into four primary layers:
+---
+
+## 3. System Flow Interpretation
+
+The system operates in a **bottom-up analytical flow**:
+
+1. Dependency structures are mapped  
+2. Cascading behaviour is simulated  
+3. Observability systems attempt detection  
+4. Risk signals are classified  
+5. Executive layer consolidates system state  
+
+---
+
+## 4. Risk Propagation Pathway
+
+Risk propagation typically follows:
+Dependency → Cascade → Observability Gap → Risk Signal Emergence
+
+This represents the key analytical insight of the system:
+> failures are not isolated events but propagated structural behaviours
+
+---
+
+## 5. Key Architectural Insight
+
+The architecture highlights a central condition:
+
+> As system coupling increases, observability lag becomes the dominant constraint on system stability.
+
+---
+
+## 6. Relationship to Other Documents
+
+This diagram aligns with:
+
+- EXECUTIVE_BRIEF.md → system summary layer  
+- reference-architecture.md → structural decomposition  
+- risk-signal-register.md → analytical risk classification  
+- README.md → full system index  
+
+---
+
+## 7. Closing Statement
+
