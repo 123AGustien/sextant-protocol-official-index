@@ -1,0 +1,9 @@
+{
+  "scenario_name": "ci_test",
+  "nodes": ["A", "B", "C"],
+  "dependencies": [
+    { "from": "A", "to": "B" },
+    { "from": "B", "to": "C" }
+  ],
+  "initial_failure": "A"
+}
