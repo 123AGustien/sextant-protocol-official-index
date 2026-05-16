@@ -4,11 +4,11 @@ import os
 
 
 # -------------------------------------------------
-# SIMULATION RUNNER (POLISHED v1)
+# SIMULATION RUNNER (v2 STABLE)
 # -------------------------------------------------
 class SimulationRunner:
 
-    def __init__(self, scenario_path):
+    def __init__(self, scenario_path: str):
         self.loader = ScenarioLoader()
         self.engine = OrbitalEngine()
         self.scenario_path = scenario_path
@@ -16,14 +16,18 @@ class SimulationRunner:
     # -------------------------------------------------
     # LOAD SCENARIO INTO ENGINE
     # -------------------------------------------------
-    def setup(self):
+    def setup(self) -> dict:
         scenario = self.loader.load_from_file(self.scenario_path)
+
+        # Defensive validation (CI SAFE)
+        if not isinstance(scenario, dict):
+            raise ValueError("Scenario must be a dictionary")
 
         # build nodes
         for node in scenario.get("nodes", []):
             if isinstance(node, dict):
                 self.engine.add_node(
-                    node["id"],
+                    node.get("id"),
                     node.get("criticality", 5)
                 )
             else:
@@ -31,7 +35,7 @@ class SimulationRunner:
 
         # build edges
         for dep in scenario.get("dependencies", []):
-            self.engine.add_edge(dep["from"], dep["to"])
+            self.engine.add_edge(dep.get("from"), dep.get("to"))
 
         # initial failure
         initial_failure = scenario.get("initial_failure")
@@ -43,14 +47,18 @@ class SimulationRunner:
     # -------------------------------------------------
     # EXECUTE SIMULATION
     # -------------------------------------------------
-    def run(self, steps=5):
+    def run(self, steps: int = 5) -> dict:
         print("\n🧭 Orbital Reprisory Simulation Starting...\n")
+
+        final_state = {}
 
         for _ in range(steps):
             result = self.engine.step()
 
-            print(f"Step {result['time']}")
-            print("States:", result["states"])
+            final_state = result  # keep last snapshot
+
+            print(f"Step {result.get('time')}")
+            print("States:", result.get("states", {}))
 
             if result.get("interventions"):
                 print("Interventions:", result["interventions"])
@@ -59,9 +67,11 @@ class SimulationRunner:
 
         print("\n✅ Simulation Complete\n")
 
+        return final_state
+
 
 # -------------------------------------------------
-# ENTRY POINT (CI SAFE)
+# ENTRY POINT (CI SAFE + PATH RESOLVED)
 # -------------------------------------------------
 if __name__ == "__main__":
     base_path = os.path.dirname(__file__)
