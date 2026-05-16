@@ -1,4 +1,4 @@
- Orbital Reprisory Reprisory - Core Engine
+# Orbital Reprisory - Core Engine
 
 class Node:
     def __init__(self, node_id, criticality=5):
@@ -8,9 +8,9 @@ class Node:
 
 
 class Edge:
-    def __init__(self, from_node, to_node):
-        self.from_node = from_node
-        self.to_node = to_node
+    def __init__(self, from_id, to_id):
+        self.from_id = from_id
+        self.to_id = to_id
 
 
 class OrbitalEngine:
@@ -32,14 +32,15 @@ class OrbitalEngine:
     def step(self):
         self.time += 1
 
-        # Simple propagation rule (v1)
+        # Propagation rule (v1 safe)
         for edge in self.edges:
-            from_node = self.nodes.get(edge.from_node)
-            to_node = self.nodes.get(edge.to_node)
+            from_node = self.nodes.get(edge.from_id)
+            to_node = self.nodes.get(edge.to_id)
 
             if from_node and to_node:
                 if from_node.state == "failed":
-                    to_node.state = "degraded"
+                    if to_node.state == "healthy":
+                        to_node.state = "degraded"
 
         return {
             "time": self.time,
