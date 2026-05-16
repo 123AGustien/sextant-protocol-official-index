@@ -1,0 +1,23 @@
+name: Orbital Reprisory Simulation Test
+
+on:
+  push:
+    branches: [ main, orbital-reprisory-v4-control-layer ]
+  pull_request:
+
+jobs:
+  run-simulation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run simulation
+        run: |
+          python orbital_reprisory/run_simulation.py
