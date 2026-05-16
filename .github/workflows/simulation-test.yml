@@ -1,23 +1,47 @@
-name: Orbital Reprisory Simulation Test
+name: Sextant Orbital Reprisory Simulation Test
 
 on:
   push:
-    branches: [ main, orbital-reprisory-v4-control-layer ]
+    branches:
+      - main
+      - orbital-reprisory-v4-control-layer
   pull_request:
 
 jobs:
-  run-simulation:
+  simulation-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      # -----------------------------------------
+      # 1. Checkout repository
+      # -----------------------------------------
+      - name: Checkout repository
         uses: actions/checkout@v4
 
+      # -----------------------------------------
+      # 2. Set up Python environment
+      # -----------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Run simulation
+      # -----------------------------------------
+      # 3. Install dependencies (if any in future)
+      # -----------------------------------------
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      # -----------------------------------------
+      # 4. Set PYTHONPATH (FIX FOR YOUR ERROR)
+      # -----------------------------------------
+      - name: Configure Python Path
+        run: echo "PYTHONPATH=." >> $GITHUB_ENV
+
+      # -----------------------------------------
+      # 5. Run simulation engine
+      # -----------------------------------------
+      - name: Run Orbital Simulation
         run: |
           python orbital_reprisory/run_simulation.py
