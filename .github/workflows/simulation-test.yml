@@ -1,18 +1,6 @@
-
-name: Sextant Orbital Reprisory Simulation Test
-
-on: {}
-
 name: Sextant Orbital Reprisory Simulation Test
 
 on:
-  push:
-    branches:
-      - main
-      - orbital-reprisory-v4-control-layer
-
-  pull_request:
-
   workflow_dispatch:
     inputs:
       steps:
@@ -53,7 +41,7 @@ jobs:
         run: echo "PYTHONPATH=." >> $GITHUB_ENV
 
       # -----------------------------------------
-      # Run simulation engine
+      # Run simulation engine (manual only)
       # -----------------------------------------
       - name: Run Orbital Simulation
         run: |
