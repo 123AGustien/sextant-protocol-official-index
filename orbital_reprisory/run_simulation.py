@@ -1,10 +1,10 @@
 from orbital_reprisory.core.orbital_engine import OrbitalEngine
 from orbital_reprisory.core.scenario_loader import ScenarioLoader
-import json
+import os
 
 
 # -------------------------------------------------
-# MAIN SIMULATION RUNNER
+# SIMULATION RUNNER (POLISHED v1)
 # -------------------------------------------------
 class SimulationRunner:
 
@@ -20,19 +20,23 @@ class SimulationRunner:
         scenario = self.loader.load_from_file(self.scenario_path)
 
         # build nodes
-        for node in scenario["nodes"]:
+        for node in scenario.get("nodes", []):
             if isinstance(node, dict):
-                self.engine.add_node(node["id"], node.get("criticality", 5))
+                self.engine.add_node(
+                    node["id"],
+                    node.get("criticality", 5)
+                )
             else:
                 self.engine.add_node(node)
 
         # build edges
-        for dep in scenario["dependencies"]:
+        for dep in scenario.get("dependencies", []):
             self.engine.add_edge(dep["from"], dep["to"])
 
         # initial failure
-        if scenario.get("initial_failure"):
-            self.engine.fail_node(scenario["initial_failure"])
+        initial_failure = scenario.get("initial_failure")
+        if initial_failure:
+            self.engine.fail_node(initial_failure)
 
         return scenario
 
@@ -42,13 +46,13 @@ class SimulationRunner:
     def run(self, steps=5):
         print("\n🧭 Orbital Reprisory Simulation Starting...\n")
 
-        for i in range(steps):
+        for _ in range(steps):
             result = self.engine.step()
 
             print(f"Step {result['time']}")
             print("States:", result["states"])
 
-            if "interventions" in result:
+            if result.get("interventions"):
                 print("Interventions:", result["interventions"])
 
             print("-" * 40)
@@ -57,9 +61,12 @@ class SimulationRunner:
 
 
 # -------------------------------------------------
-# ENTRY POINT
+# ENTRY POINT (CI SAFE)
 # -------------------------------------------------
 if __name__ == "__main__":
-    runner = SimulationRunner("scenario.json")
+    base_path = os.path.dirname(__file__)
+    scenario_path = os.path.join(base_path, "scenario.json")
+
+    runner = SimulationRunner(scenario_path)
     runner.setup()
     runner.run(steps=10)
