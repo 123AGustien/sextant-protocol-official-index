@@ -1,4 +1,27 @@
 
+Governance Routing Layer
+sextant-governance-routing-layer
+https://github.com/123AGustien/sextant-governance-routing-layer⁠�
+Role
+This repository acts as the Governance Interpretation Layer of the Sextant Protocol ecosystem.
+It performs:
+Index structure interpretation
+Policy transformation (SPD-R adapter logic)
+Cascade impact modelling
+Execution decision specification
+Architecture Position
+
+INDEX = meaning layer
+ROUTING = interpretation + governance transformation
+ENGINE = execution + simulation systems
+Constraint Boundary
+The routing layer is:
+non-executable
+reference-only
+does not perform runtime operations
+does not override index or engine logic
+
+
 
 System Architecture Overview
 The Sextant Protocol ecosystem is a modular research framework for modelling infrastructure dependency, cascading system risk, and observability under AI-augmented conditions.
