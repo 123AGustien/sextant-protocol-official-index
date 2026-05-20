@@ -1,26 +1,44 @@
 
-Governance Routing Layer
-sextant-governance-routing-layer
-https://github.com/123AGustien/sextant-governance-routing-layer
-Role
-This repository acts as the Governance Interpretation Layer of the Sextant Protocol ecosystem.
-It performs:
-Index structure interpretation
-Policy transformation (SPD-R adapter logic)
-Cascade impact modelling
-Execution decision specification
-Architecture Position
 
-INDEX = meaning layer
-ROUTING = interpretation + governance transformation
-ENGINE = execution + simulation systems
-Constraint Boundary
-The routing layer is:
-non-executable
-reference-only
-does not perform runtime operations
-does not override index or engine logic
+## 🧭 Governance Routing Layer
 
+- sextant-governance-routing-layer  
+  https://github.com/123AGustien/sextant-governance-routing-layer  
+
+### Role
+The Governance Routing Layer acts as the interpretation and policy transformation layer within the Sextant Protocol ecosystem.
+
+It does not execute logic or store canonical truth. Instead, it translates structured index definitions into governance-aware system rules.
+
+### Functions
+- Index structure interpretation
+- SPD-R policy transformation (adapter logic)
+- Cascade impact modelling (non-executing simulation reference)
+- Execution decision specification (allow/block governance rules)
+
+### Architecture Position
+
+- INDEX → meaning layer (canonical structure + system truth)
+- ROUTING → interpretation layer (governance + transformation)
+- ENGINE → execution layer (simulation + runtime systems)
+
+### Constraint Boundary
+
+The routing layer is strictly:
+- Non-executable
+- Reference-only
+- No runtime processing
+- No override authority over INDEX or ENGINE
+
+It only defines how interpretation occurs, not execution.
+
+---
+
+## 🔗 System Integration Map (Updated)
+
+- INDEX → sextant-protocol-official-index  
+- ROUTING → sextant-governance-routing-layer  
+- ENGINE → SPD-R / Cascade / Observability systems
 
 
 System Architecture Overview
