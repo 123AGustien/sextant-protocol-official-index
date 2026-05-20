@@ -1,7 +1,7 @@
 
 Governance Routing Layer
 sextant-governance-routing-layer
-https://github.com/123AGustien/sextant-governance-routing-layer⁠�
+https://github.com/123AGustien/sextant-governance-routing-layer
 Role
 This repository acts as the Governance Interpretation Layer of the Sextant Protocol ecosystem.
 It performs:
