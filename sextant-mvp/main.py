@@ -1,84 +1,153 @@
-import json
-import random
+# 🧭 Sextant Protocol (v0.1)
 
-from sextant_mvp.core.graph_engine import GraphEngine
-from sextant_mvp.experiments.baseline import BaselineSimulator
-from sextant_mvp.core.cascade_engine import CascadeEngine
-from sextant_mvp.core.routing_engine import RoutingEngine
-from sextant_mvp.core.metrics import Metrics
+## Overview
 
+Sextant Protocol is a scenario-based orchestration and cascade simulation framework designed to model, evaluate, and compare system behavior under uncertainty.
 
-def load_scenario(path):
-    with open(path, "r") as f:
-        return json.load(f)
+It simulates workflow execution, failure propagation, and predictive routing under dependency-based systems.
 
+---
 
-def build_graph(scenario):
-    g = GraphEngine()
+## 🎯 Core Objective
 
-    for node in scenario["nodes"]:
-        g.add_node(node["id"], node["failure_prob"])
+To evaluate system behavior under:
 
-    for edge in scenario["edges"]:
-        g.add_edge(edge[0], edge[1])
+- probabilistic node failure  
+- dependency-based cascade effects  
+- multi-path execution uncertainty  
 
-    return g
+And compare:
 
+- Baseline execution  
+- Cascade-aware execution  
+- Predictive routing execution  
 
-if __name__ == "__main__":
-    scenario = load_scenario("sextant-mvp/scenarios/sample_workflow.json")
+---
 
-    graph = build_graph(scenario)
+## 🧱 System Architecture
 
-    # -------------------------
-    # BASELINE RUN
-    # -------------------------
-    baseline = BaselineSimulator()
-    baseline_result = baseline.run(graph)
+### 1. Graph Layer
+Represents workflows as directed graphs:
 
-    print("\nBASELINE RESULT:")
-    print(baseline_result)
+- Nodes = system actions/services  
+- Edges = dependencies  
+- Each node has a failure probability  
 
-    # -------------------------
-    # CASCADE RUN
-    # -------------------------
-    cascade_engine = CascadeEngine(graph)
+---
 
-    initial_failures = set()
+### 2. Baseline Execution
+A naive execution model:
 
-    for node in graph.nodes():
-        if random.random() < graph.get_failure_prob(node):
-            initial_failures.add(node)
+- Independent node failures  
+- No dependency awareness  
+- No cascade modeling  
 
-    cascade_result = cascade_engine.run(initial_failures)
+Used as control benchmark.
 
-    print("\nCASCADE RESULT:")
-    print(cascade_result)
+---
 
-    # -------------------------
-    # ROUTING RUN
-    # -------------------------
-    routing_engine = RoutingEngine(graph)
+### 3. Cascade Simulation Layer
+Models failure propagation:
 
-    start_node = scenario["nodes"][0]["id"]
+- Failures spread through dependencies  
+- Downstream nodes are affected  
+- Produces cascade depth and impact scope  
 
-    routing_result = routing_engine.choose_best_path(start_node)
+---
 
-    print("\nROUTING RESULT:")
-    print(routing_result)
+### 4. Routing Engine (Predictive Layer)
 
-    # -------------------------
-    # METRICS
-    # -------------------------
-    metrics = Metrics()
+A decision simulation system that:
 
-    total_nodes = len(graph.nodes())
+- Simulates multiple execution paths  
+- Estimates risk per path  
+- Selects lowest-risk route  
 
-    baseline_score = metrics.baseline_score(baseline_result)
-    cascade_impact = metrics.cascade_impact(cascade_result, total_nodes)
-    improvement = metrics.improvement(baseline_score, cascade_impact)
+---
 
-    print("\nMETRICS SUMMARY:")
-    print("Baseline Score:", baseline_score)
-    print("Cascade Impact:", cascade_impact)
-    print("Improvement:", improvement)
+## 📊 Metrics Layer
+
+The system computes:
+
+- **Baseline Score** → success rate of naive execution  
+- **Cascade Impact** → proportion of system affected  
+- **Improvement Delta** → performance difference  
+
+---
+
+## 🔬 Benchmark Engine
+
+To ensure statistical validity:
+
+- Runs 100+ simulations  
+- Averages results across runs  
+- Produces stable performance metrics  
+
+---
+
+## 📈 Execution Modes
+
+| Mode | Description |
+|------|------------|
+| Baseline | Independent random failure |
+| Cascade | Dependency-based failure propagation |
+| Routing | Risk-aware path selection |
+
+---
+
+## 🧪 Output Structure
+
+### Single Run
+- Baseline result  
+- Cascade result  
+- Routing decision  
+- Metrics summary  
+
+### Benchmark Run (100 iterations)
+- Average baseline performance  
+- Average cascade impact  
+- Average routing risk  
+
+---
+
+## 🧠 Key Insight
+
+Sextant Protocol demonstrates that:
+
+> dependency-aware simulation produces measurable differences in system stability compared to naive execution models.
+
+---
+
+## ⚙️ Current Status
+
+Prototype evaluation system (v0.1):
+
+- Graph-based orchestration model  
+- Cascade failure simulation  
+- Predictive routing logic  
+- Statistical benchmarking engine  
+
+---
+
+## 🚀 Future Work
+
+- Weighted dependency graphs  
+- Real-time API layer  
+- Visual cascade mapping  
+- Multi-agent orchestration support  
+- Temporal failure modeling  
+
+---
+
+## 📌 Summary
+
+Sextant Protocol provides a unified framework for:
+
+- simulating system behavior  
+- modeling cascade risk  
+- evaluating decision strategies  
+- generating statistical performance evidence  
+
+Bridging:
+
+graph theory + probabilistic simulation + decision routing + benchmarking
