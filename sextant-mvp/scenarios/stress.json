@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {"id": "A", "failure_prob": 0.1},
+    {"id": "B", "failure_prob": 0.3},
+    {"id": "C", "failure_prob": 0.25},
+    {"id": "D", "failure_prob": 0.2},
+    {"id": "E", "failure_prob": 0.15}
+  ],
+  "edges": [
+    ["A", "B"],
+    ["B", "C"],
+    ["C", "D"],
+    ["A", "D"],
+    ["D", "E"]
+  ]
+}
