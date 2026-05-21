@@ -73,8 +73,6 @@ Includes:
 
 ---
 ## 🔄 System Flow
-
-```text
 INDEX → ENGINE → OBSERVABILITY
         ↓
    GOVERNANCE (interpretation overlay)
