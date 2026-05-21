@@ -336,14 +336,52 @@ Used for:
 - [Sextant-Protocol](https://github.com/123AGustien/Sextant-Protocol) → Stress testing  
 - [spd-r-google-cloud-poc](https://github.com/123AGustien/spd-r-google-cloud-poc) → Observability layer  
 
----
+---💼 SME Financial Intelligence Layer
+
+- "sme-health-report-ai" (https://github.com/123AGustien/sme-health-report-ai)
+
+AI-powered SME financial intelligence and business health analysis platform.
+
+Functions
+
+- CSV financial data ingestion
+- AI-based business health scoring
+- cashflow and expense analysis
+- downloadable business reporting
+- lightweight SaaS dashboard simulation
+- GitHub Actions automated processing
+
+Position Within Ecosystem
+
+- INPUT → SME financial datasets
+- ANALYSIS → AI financial intelligence engine
+- OUTPUT → business health reports + risk scoring
+
+Architecture Role
+
+This repository represents a lightweight operational intelligence and SaaS analytics layer within the broader Sextant ecosystem.
+
+It focuses on:
+
+- SME financial visibility
+- simplified operational intelligence
+- decision-support modelling
+- business risk awareness
+
+Scope
+
+- Simulation-based
+- Research-oriented
+- Non-banking
+- Not connected to live financial infrastructure
+- Prototype SaaS architecture
 
 # ⚠️ Scope & Safety
 
 - Research-oriented  
 - Simulation-based  
 - Non-operational  
-- Not connected to live systems  
+- Not connected to liv I'me systems  
 
 ---
 
