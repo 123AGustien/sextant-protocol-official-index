@@ -2,19 +2,24 @@
 
 ## Overview
 
-This document provides a single consolidated view of all system layers in the Sextant Protocol ecosystem.
+This document provides a consolidated view of all system layers in the Sextant Protocol ecosystem.
+
+It defines how components interact across structure, execution, interpretation, and evaluation layers.
 
 ---
 
 ## 🧱 Core Architecture Layers
 
 ### 1. INDEX LAYER (System Truth)
-Defines canonical structure of the system:
 
-- Dependency graphs
-- Node definitions
-- System topology
-- Risk model structure
+Defines the canonical structure of the system.
+
+Includes:
+
+- Dependency graphs  
+- Node definitions  
+- System topology  
+- Risk model structure  
 
 📌 Purpose:
 > Defines what the system is
@@ -23,12 +28,14 @@ Defines canonical structure of the system:
 
 ### 2. ENGINE LAYER (Execution)
 
-Responsible for simulation logic:
+Responsible for simulation logic and runtime behavior.
 
-- Graph Engine
-- Baseline Simulator
-- Cascade Engine
-- Routing Engine
+Includes:
+
+- Graph Engine  
+- Baseline Simulator  
+- Cascade Engine  
+- Routing Engine  
 
 📌 Purpose:
 > Executes system behavior under uncertainty
@@ -37,28 +44,32 @@ Responsible for simulation logic:
 
 ### 3. GOVERNANCE LAYER (Interpretation)
 
-Defines system constraints and semantics:
+Defines constraints and interpretation rules.
 
-- Execution boundaries
-- Policy interpretation rules
-- Structural constraints
-- Control logic definitions
+Includes:
+
+- Execution boundaries  
+- Policy interpretation rules  
+- Structural constraints  
+- Control logic definitions  
 
 📌 Purpose:
-> Defines how the system is interpreted
+> Defines how system behavior is interpreted and constrained
 
 ---
 
 ### 4. OBSERVABILITY LAYER
 
-Measures system behavior:
+Measures and evaluates system behavior.
 
-- Metrics engine
-- Benchmark runner
-- Scenario comparison outputs
+Includes:
+
+- Metrics engine  
+- Benchmark runner  
+- Scenario comparison outputs  
 
 📌 Purpose:
-> Evaluates system performance
+> Evaluates system performance across conditions
 
 ---
 
