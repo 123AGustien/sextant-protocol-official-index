@@ -336,7 +336,9 @@ Used for:
 - [Sextant-Protocol](https://github.com/123AGustien/Sextant-Protocol) → Stress testing  
 - [spd-r-google-cloud-poc](https://github.com/123AGustien/spd-r-google-cloud-poc) → Observability layer  
 
----💼 SME Financial Intelligence Layer
+---
+
+💼 SME Financial Intelligence Layer
 
 - "sme-health-report-ai" (https://github.com/123AGustien/sme-health-report-ai)
 
