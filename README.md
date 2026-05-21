@@ -1,3 +1,20 @@
+# 🧭 Sextant Protocol
+
+A structured simulation framework for evaluating how complex systems behave under dependency failure, cascading risk propagation, and governance-constrained decision routing.
+
+---
+
+## Purpose
+
+Sextant Protocol is designed to model and compare system behavior under uncertainty by simulating:
+
+- probabilistic component failure  
+- dependency-driven cascade effects  
+- multi-path decision routing under risk  
+- structured governance constraints  
+
+It enables controlled comparison of system resilience across multiple execution models.
+
 # 🧭 SEXTANT PROTOCOL — UNIFIED INDEX & GOVERNANCE SYSTEM
 
 ## System Classification
