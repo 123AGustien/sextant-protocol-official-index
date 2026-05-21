@@ -1,7 +1,9 @@
 import json
+import random
 
 from sextant_mvp.core.graph_engine import GraphEngine
 from sextant_mvp.experiments.baseline import BaselineSimulator
+from sextant_mvp.core.cascade_engine import CascadeEngine
 
 
 def load_scenario(path):
@@ -26,8 +28,27 @@ if __name__ == "__main__":
 
     graph = build_graph(scenario)
 
+    # -------------------------
+    # BASELINE RUN
+    # -------------------------
     baseline = BaselineSimulator()
-    result = baseline.run(graph)
+    baseline_result = baseline.run(graph)
 
     print("\nBASELINE RESULT:")
-    print(result)
+    print(baseline_result)
+
+    # -------------------------
+    # CASCADE RUN
+    # -------------------------
+    cascade_engine = CascadeEngine(graph)
+
+    initial_failures = set()
+
+    for node in graph.nodes():
+        if random.random() < graph.get_failure_prob(node):
+            initial_failures.add(node)
+
+    cascade_result = cascade_engine.run(initial_failures)
+
+    print("\nCASCADE RESULT:")
+    print(cascade_result)
