@@ -1,4 +1,40 @@
+# 🧭 SEXTANT PROTOCOL — UNIFIED INDEX & GOVERNANCE SYSTEM
 
+## System Classification
+
+This repository functions as a combined:
+
+- 📌 System Index Layer (canonical architecture definition)
+- ⚖️ Governance Routing Layer (interpretation + constraint logic)
+
+Both layers operate on the same structural graph but serve different roles.
+
+---
+
+## Layer Separation Model
+
+### 1. INDEX LAYER (STRUCTURE TRUTH)
+Defines:
+- system architecture
+- dependency graphs
+- simulation models
+- risk scoring structures
+
+### 2. GOVERNANCE LAYER (INTERPRETATION RULES)
+Defines:
+- constraint boundaries
+- execution permissions
+- system classification rules
+- routing interpretation logic
+
+---
+
+## IMPORTANT PRINCIPLE
+
+> Governance does NOT modify execution logic  
+> Index defines structure  
+> Engine executes simulation  
+> Routing interprets constraints
 
 ## 🧭 Governance Routing Layer
 
