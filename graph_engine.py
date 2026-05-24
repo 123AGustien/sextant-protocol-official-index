@@ -31,7 +31,7 @@ class SextantEngine:
         return self.sigmoid(L - self.theta)
 
     # -----------------------------
-    # State update rule (det + prob hybrid)
+    # State update rule (deterministic + probabilistic)
     # -----------------------------
     def step(self):
         L = self.compute_load()
@@ -41,21 +41,21 @@ class SextantEngine:
 
         for i in range(self.n):
 
-            # deterministic threshold pressure
+            # deterministic degradation
             if L[i] < self.theta[i]:
-                new_S[i] = max(0, new_S[i] - 1)
+                new_S[i] = max(0, self.S[i] - 1)
 
             # probabilistic collapse layer
             if P[i] > 0.85:
                 new_S[i] = 0
             elif P[i] > 0.5:
-                new_S[i] = max(0, new_S[i] - 1)
+                new_S[i] = max(0, self.S[i] - 1)
 
         self.S = new_S
         return self.S, P
 
     # -----------------------------
-    # Run cascade simulation
+    # Run full cascade simulation
     # -----------------------------
     def run(self, steps=10):
         history = []
