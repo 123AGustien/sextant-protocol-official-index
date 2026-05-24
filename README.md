@@ -27,6 +27,29 @@ This repository functions as a combined:
 Both layers operate on the same structural graph but serve different roles.
 
 ---
+# System Execution Model
+
+The Sextant Protocol operates across three layers:
+
+## 1. Structural Layer
+Defines dependency graph:
+G = (V, E)
+
+## 2. Simulation Layer
+Implements cascade propagation using:
+graph_engine.py
+
+## 3. Analytical Layer
+Provides:
+- probabilistic failure model
+- resilience index
+- recovery dynamics
+
+---
+
+## System Lifecycle
+
+Dependency → Stress → Failure → Cascade → Recovery → Stabilisation
 
 ## Layer Separation Model
 
@@ -150,6 +173,26 @@ Each subsystem is evaluated using four conceptual indicators:
 
 ---
 
+
+## 📊 Variable Definitions (System-Wide)
+
+All risk variables are defined as follows:
+
+- DS = Dependency Strength
+- PS = Propagation Sensitivity
+- CD = Coupling Density
+- OD = Observability Delay
+
+These variables are normalized:
+
+DS, PS, CD ∈ [0,1]
+OD > 0
+
+---
+
+## 🧮 Risk Index (Normalized Model)
+
+RI = (DS × PS × CD) / OD
 ### 🧮 Risk Index (Conceptual Model)
 
 RI = (DS × PS × CD) / OD
