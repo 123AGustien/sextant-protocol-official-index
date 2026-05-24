@@ -8,10 +8,18 @@ class SextantEngine:
     - Appendix B Fully Aligned Implementation
     """
 
-    def __init__(self, adjacency_matrix, threshold_vector, beta=1.5):
-        self.W = np.array(adjacency_matrix, dtype=float)
-        self.theta = np.array(threshold_vector, dtype=float)
-        self.beta = beta
+    def __init__(self, adjacency_matrix, threshold_vector, beta=1.5, alpha=0.5):
+    self.W = np.array(adjacency_matrix, dtype=float)
+    self.theta = np.array(threshold_vector, dtype=float)
+    self.beta = beta
+    self.alpha = alpha
+
+    self.n = len(threshold_vector)
+
+    self.S = np.ones(self.n, dtype=int) * 2
+
+    # NEW: economic stress vector (starts neutral)
+    self.E = np.zeros(self.n)
 
         self.n = len(threshold_vector)
 
