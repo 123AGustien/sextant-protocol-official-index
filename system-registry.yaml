@@ -4,24 +4,24 @@ system_registry:
 
   description: >
     Canonical registry mapping all repositories into a structured 3-layer architecture:
-    INDEX (truth), ROUTING (interpretation), ENGINE (execution).
+    INDEX (structural truth), ROUTING (governance interpretation), ENGINE (execution layer).
 
   layers:
 
     index_layer:
       name: "INDEX"
-      role: "Truth Layer"
+      role: "Structural Truth Layer"
       repository: "sextant-protocol-official-index"
 
       responsibility:
-        - Defines system structure
-        - Holds canonical meaning
-        - Maintains repository registry
+        - Defines system architecture
+        - Maintains canonical structure
+        - Holds registry definitions
 
       constraints:
         - no execution
-        - no simulation
-        - no policy transformation
+        - no simulation logic
+        - no governance transformation
 
     routing_layer:
       name: "ROUTING"
@@ -30,9 +30,9 @@ system_registry:
 
       responsibility:
         - Interprets index structure
-        - Translates into governance rules
-        - Defines SPD-R policy adaptation logic
-        - Models cascade impact at policy level
+        - Translates structure into governance rules
+        - Defines policy transformation logic
+        - Models cascade impact at governance level
 
       constraints:
         - non-executable
@@ -51,14 +51,14 @@ system_registry:
         - sextant-orbital-resilience-framework
 
       responsibility:
-        - Executes simulations
-        - Runs cascade models
+        - Runs simulations
+        - Executes cascade models
         - Processes observability data
         - Produces runtime outputs
 
       constraints:
-        - cannot redefine index meaning
-        - must follow routing interpretation rules
+        - must follow routing interpretation
+        - cannot redefine index structure
 
   cross_repo_dependencies:
 
@@ -70,31 +70,31 @@ system_registry:
       type: governance_translation
       flow: "ROUTING → ENGINE"
 
-    engine_to_index:
-      type: observability_feedback_only
-      flow: "ENGINE → INDEX (read-only signals)"
+    engine_observability_feedback:
+      type: read_only_signal_flow
+      flow: "ENGINE → INDEX (observational only)"
 
   governance_rules:
 
     rule_1:
       name: layer_separation_enforcement
-      description: "No layer may execute responsibilities of another layer"
+      description: "Each layer must only perform its defined role"
 
     rule_2:
       name: index_authority_lock
-      description: "INDEX is the only source of structural truth"
+      description: "INDEX remains the sole source of structural truth"
 
     rule_3:
-      name: routing_interpretation_boundary
-      description: "ROUTING may transform meaning but not execute systems"
+      name: routing_boundary_rule
+      description: "ROUTING may interpret but not execute"
 
     rule_4:
-      name: engine_execution_constraint
-      description: "ENGINE must not redefine governance logic"
+      name: engine_execution_rule
+      description: "ENGINE executes only within routed constraints"
 
   system_flow:
     - INDEX defines structure
     - ROUTING interprets structure into governance rules
-    - ENGINE executes simulations and systems
-    - ENGINE feedback returns observational signals only
-    - INDEX remains canonical source of truth
+    - ENGINE executes simulations
+    - ENGINE emits observational signals
+    - INDEX remains canonical reference layer
