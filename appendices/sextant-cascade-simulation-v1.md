@@ -81,3 +81,4 @@ This model captures:
 - multi-hop dependency amplification
 - nonlinear system collapse behavior
 - delayed cascade activation effects
+ Appendix B–C: Cascade Simulation Extension and Control Recovery Dynamics
