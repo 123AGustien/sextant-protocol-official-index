@@ -1,6 +1,13 @@
 import numpy as np
 
+
 class SextantEngine:
+    """
+    Sextant Protocol Cascade Engine
+    - Deterministic + Probabilistic Failure Model
+    - Appendix B Fully Aligned Implementation
+    """
+
     def __init__(self, adjacency_matrix, threshold_vector, beta=1.5):
         self.W = np.array(adjacency_matrix, dtype=float)
         self.theta = np.array(threshold_vector, dtype=float)
@@ -8,11 +15,15 @@ class SextantEngine:
 
         self.n = len(threshold_vector)
 
-        # 2 = operational, 1 = degraded, 0 = failed
-        self.S = np.ones(self.n) * 2
+        # State:
+        # 2 = operational
+        # 1 = degraded
+        # 0 = failed
+        self.S = np.ones(self.n, dtype=int) * 2
 
     # -----------------------------
     # Load function: L_i(t)
+    # L = Wᵀ · S
     # -----------------------------
     def compute_load(self):
         return self.W.T @ self.S
@@ -24,14 +35,14 @@ class SextantEngine:
         return 1 / (1 + np.exp(-self.beta * x))
 
     # -----------------------------
-    # Probabilistic failure model
-    # P_i(t)
+    # Failure probability P_i(t)
+    # P_i(t) = σ(L_i - θ_i)
     # -----------------------------
     def compute_failure_prob(self, L):
         return self.sigmoid(L - self.theta)
 
     # -----------------------------
-    # State update rule (deterministic + probabilistic)
+    # State transition logic
     # -----------------------------
     def step(self):
         L = self.compute_load()
@@ -41,21 +52,22 @@ class SextantEngine:
 
         for i in range(self.n):
 
-            # deterministic degradation
+            # Deterministic degradation
             if L[i] < self.theta[i]:
                 new_S[i] = max(0, self.S[i] - 1)
 
-            # probabilistic collapse layer
+            # Probabilistic collapse
             if P[i] > 0.85:
                 new_S[i] = 0
             elif P[i] > 0.5:
                 new_S[i] = max(0, self.S[i] - 1)
 
-        self.S = new_S
+        self.S = new_S.astype(int)
+
         return self.S, P
 
     # -----------------------------
-    # Run full cascade simulation
+    # Cascade simulation runner
     # -----------------------------
     def run(self, steps=10):
         history = []
