@@ -1,20 +1,29 @@
-import networkx as nx
+import numpy as np
 
-class GraphEngine:
-    def __init__(self):
-        self.graph = nx.DiGraph()
+class SextantEngine:
+    def __init__(self, adjacency_matrix, threshold_vector):
+        self.W = np.array(adjacency_matrix)
+        self.theta = np.array(threshold_vector)
+        self.n = len(threshold_vector)
+        self.S = np.ones(self.n) * 2  # all operational
 
-    def add_node(self, node_id, failure_prob=0.1):
-        self.graph.add_node(node_id, failure_prob=failure_prob)
+    def compute_load(self):
+        return self.W.T @ self.S
 
-    def add_edge(self, from_node, to_node):
-        self.graph.add_edge(from_node, to_node)
+    def step(self):
+        L = self.compute_load()
 
-    def get_downstream(self, node_id):
-        return list(self.graph.successors(node_id))
+        new_S = self.S.copy()
 
-    def get_failure_prob(self, node_id):
-        return self.graph.nodes[node_id]["failure_prob"]
+        for i in range(self.n):
+            if L[i] < self.theta[i]:
+                new_S[i] = max(0, self.S[i] - 1)
 
-    def nodes(self):
-        return list(self.graph.nodes)
+        self.S = new_S
+        return self.S
+
+    def run(self, steps=10):
+        history = [self.S.copy()]
+        for _ in range(steps):
+            history.append(self.step().copy())
+        return np.array(history)
