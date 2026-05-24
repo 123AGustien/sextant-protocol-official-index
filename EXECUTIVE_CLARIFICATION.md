@@ -1,0 +1,1 @@
+This repository is a simulation-based research framework for studying dependency systems, cascade effects, and resilience modeling. It does not interface with, control, or operate any real-world infrastructure systems.
