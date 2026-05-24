@@ -4,30 +4,40 @@ import numpy as np
 class SextantEngine:
     """
     Sextant Protocol Cascade Engine
-    - Deterministic + Probabilistic Failure Model
-    - Appendix B Fully Aligned Implementation
+    Appendix B Implementation (Deterministic + Probabilistic Hybrid Model)
+
+    Core Functions:
+    - Dependency load computation
+    - Sigmoid failure probability
+    - Hybrid state transition (deterministic + stochastic)
+    - Cascade simulation over time
     """
 
     def __init__(self, adjacency_matrix, threshold_vector, beta=1.5, alpha=0.5):
-    self.W = np.array(adjacency_matrix, dtype=float)
-    self.theta = np.array(threshold_vector, dtype=float)
-    self.beta = beta
-    self.alpha = alpha
 
-    self.n = len(threshold_vector)
+        # -----------------------------
+        # System parameters
+        # -----------------------------
+        self.W = np.array(adjacency_matrix, dtype=float)
+        self.theta = np.array(threshold_vector, dtype=float)
 
-    self.S = np.ones(self.n, dtype=int) * 2
-
-    # NEW: economic stress vector (starts neutral)
-    self.E = np.zeros(self.n)
+        self.beta = beta
+        self.alpha = alpha  # reserved for future economic coupling layer
 
         self.n = len(threshold_vector)
 
-        # State:
+        # -----------------------------
+        # Node state:
         # 2 = operational
         # 1 = degraded
         # 0 = failed
+        # -----------------------------
         self.S = np.ones(self.n, dtype=int) * 2
+
+        # -----------------------------
+        # Optional extension vector (Appendix C/D ready)
+        # -----------------------------
+        self.E = np.zeros(self.n)
 
     # -----------------------------
     # Load function: L_i(t)
@@ -37,20 +47,21 @@ class SextantEngine:
         return self.W.T @ self.S
 
     # -----------------------------
-    # Sigmoid function σ(x)
+    # Sigmoid activation function
+    # σ(x) = 1 / (1 + e^(-βx))
     # -----------------------------
     def sigmoid(self, x):
         return 1 / (1 + np.exp(-self.beta * x))
 
     # -----------------------------
-    # Failure probability P_i(t)
+    # Failure probability
     # P_i(t) = σ(L_i - θ_i)
     # -----------------------------
     def compute_failure_prob(self, L):
         return self.sigmoid(L - self.theta)
 
     # -----------------------------
-    # State transition logic
+    # State transition function
     # -----------------------------
     def step(self):
         L = self.compute_load()
@@ -60,13 +71,18 @@ class SextantEngine:
 
         for i in range(self.n):
 
+            # -------------------------
             # Deterministic degradation
+            # -------------------------
             if L[i] < self.theta[i]:
                 new_S[i] = max(0, self.S[i] - 1)
 
+            # -------------------------
             # Probabilistic collapse
+            # -------------------------
             if P[i] > 0.85:
                 new_S[i] = 0
+
             elif P[i] > 0.5:
                 new_S[i] = max(0, self.S[i] - 1)
 
@@ -75,7 +91,7 @@ class SextantEngine:
         return self.S, P
 
     # -----------------------------
-    # Cascade simulation runner
+    # Full cascade simulation
     # -----------------------------
     def run(self, steps=10):
         history = []
