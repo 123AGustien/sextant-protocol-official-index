@@ -1,4 +1,4 @@
-# Appendix G — Sextant Protocol Technology Platform Power & Systemic Dependency Layer (v1.0)
+Sextant Protocol Technology Platform Power & Systemic Dependency Layer (v1.0)
 
 ## 1. Purpose
 
@@ -91,3 +91,5 @@ This layer captures:
 - systemic concentration of operational control
 - cascading failure risk from digital infrastructure
 - hidden asymmetry between control and resilience
+
+- Add Appendix G: Technology Platform Power and Systemic Protocoldency Layer
