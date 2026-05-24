@@ -155,4 +155,106 @@ Probabilistic layer:
 
 ---
 
+# PHASE 3 — RECOVERY, FEEDBACK, AND RESILIENCE DYNAMICS
+
+---
+
+## 13. Recovery Function
+
+System recovery is modelled as a restoration process over time:
+
+S_i(t+1) = S_i(t) + R_i(t)
+
+Where:
+- R_i(t) = recovery function of node i
+- R_i(t) ∈ [0, 1]
+
+Recovery depends on external support and internal capacity.
+
+---
+
+## 14. Recovery Capacity Function
+
+Recovery strength is defined as:
+
+R_i(t) = γ_i × (1 - S_i(t))
+
+Where:
+- γ_i = recovery coefficient of node i
+- (1 - S_i(t)) ensures failed/degraded nodes recover faster
+
+Interpretation:
+- Fully failed nodes have highest recovery potential
+- Fully operational nodes have zero recovery need
+
+---
+
+## 15. System Feedback Loop
+
+System state influences future recovery capacity:
+
+γ_i(t+1) = γ_i(t) - λ × L_i(t)
+
+Where:
+- λ = stress sensitivity factor
+- L_i(t) = dependency load
+
+Interpretation:
+- higher stress reduces recovery efficiency
+- prolonged cascade weakens resilience
+
+---
+
+## 16. Stability Condition
+
+A system is stable when:
+
+Σ R_i(t) ≥ Σ P_i(t)
+
+Meaning:
+- total recovery capacity exceeds failure pressure
+
+---
+
+## 17. Resilience Index (Global Metric)
+
+We define system resilience as:
+
+RI(t) = (Σ R_i(t)) / (Σ P_i(t))
+
+Where:
+- RI(t) > 1 → stable system
+- RI(t) = 1 → critical equilibrium
+- RI(t) < 1 → cascading instability
+
+---
+
+## 18. Feedback Amplification Effect
+
+When feedback loops become positive:
+
+γ_i(t+1) < γ_i(t) AND P_i(t+1) > P_i(t)
+
+This creates:
+- accelerating degradation
+- reduced recovery capacity
+- cascading amplification cycles
+
+---
+
+## 19. Full System Cycle
+
+The complete system lifecycle is:
+
+1. Dependency load increases
+2. Failure probability rises
+3. Cascades propagate
+4. Recovery attempts activate
+5. Feedback modifies resilience
+6. System stabilises or collapses
+
+---
+
+## END OF PHASE 3 EXTENSION
+
 ## END OF FORMALIZATION v1.0
