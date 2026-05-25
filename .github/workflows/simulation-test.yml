@@ -1,8 +1,4 @@
-ame- name: Fix Python import path (CI-safe)
-        run: |
-          echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-
-ame: 🛰️ Sextant Orbital Reprisory Simulation Test
+name: 🛰️ Sextant Orbital Reprisory Simulation Test
 
 on:
   workflow_dispatch:
@@ -40,10 +36,11 @@ jobs:
           python -m pip install --upgrade pip
 
       # -----------------------------------------
-      # Ensure repo importable
+      # FIX PYTHON IMPORT PATH (IMPORTANT)
       # -----------------------------------------
-      - name: Configure PYTHONPATH
-        run: echo "PYTHONPATH=." >> $GITHUB_ENV
+      - name: Fix Python import path (CI-safe)
+        run: |
+          echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
 
       # -----------------------------------------
       # Run Orbital Simulation Engine
@@ -65,10 +62,7 @@ jobs:
 
           print("🧠 Loading cascade output...")
 
-          # -----------------------------------------
-          # REAL DATA INPUT (NO MORE STATIC VALUES)
-          # -----------------------------------------
-          file_path = "docs/runtime/cascade_execution.json"
+          file_path = "output/cascade_execution.json"
 
           if not os.path.exists(file_path):
               print("⚠ No cascade output found — using safe defaults")
@@ -80,9 +74,6 @@ jobs:
           failed_nodes = cascade.get("failed_nodes", [])
           impacts = cascade.get("impacts_on_orbital", [])
 
-          # -----------------------------------------
-          # SEVERITY MODEL (SEXTANT CORE)
-          # -----------------------------------------
           DS = min(1.0, len(failed_nodes) * 0.3)
           PS = min(1.0, len(impacts) * 0.25)
           CD = 0.7
@@ -90,15 +81,8 @@ jobs:
 
           risk_score = (DS * PS * CD) / OD
 
-          print("📊 DS:", DS)
-          print("📊 PS:", PS)
-          print("📊 CD:", CD)
-          print("📊 OD:", OD)
           print("📊 Risk Score:", risk_score)
 
-          # -----------------------------------------
-          # GOVERNANCE DECISION ENGINE
-          # -----------------------------------------
           if risk_score < 0.3:
               decision = "APPROVE"
           elif risk_score < 0.7:
@@ -110,9 +94,6 @@ jobs:
 
           print("🧾 Governance Decision:", decision)
 
-          # -----------------------------------------
-          # HARD CI ENFORCEMENT
-          # -----------------------------------------
           if decision == "BLOCK":
               print("⛔ EXECUTION BLOCKED BY SEXTANT GOVERNANCE")
               sys.exit(1)
@@ -121,12 +102,13 @@ jobs:
           EOF
 
       # -----------------------------------------
-      # Capture simulation output
+      # Upload artifacts
       # -----------------------------------------
       - name: Upload Simulation Artifact
         uses: actions/upload-artifact@v4
         with:
           name: orbital-simulation-output
+          if-no-files-found: ignore
           path: |
             output/
             logs/
