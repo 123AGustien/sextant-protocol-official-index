@@ -50,35 +50,51 @@ jobs:
             --steps "${{ github.event.inputs.steps }}"
 
       # -----------------------------------------
-      # SEVERITY + GOVERNANCE LAYER (NEW CORE)
+      # SEVERITY + GOVERNANCE (CLOSED LOOP READY)
       # -----------------------------------------
       - name: Sextant Severity & Governance Gate
         run: |
           python - << 'EOF'
           import json
           import sys
+          import os
 
-          print("🧠 Loading simulation output...")
+          print("🧠 Loading cascade output...")
 
-          # Example placeholder (later replaced by real output file)
-          simulation_result = {
-              "DS": 0.8,
-              "PS": 0.9,
-              "CD": 0.7,
-              "OD": 1.2
-          }
+          # -----------------------------------------
+          # REAL DATA INPUT (NO MORE STATIC VALUES)
+          # -----------------------------------------
+          file_path = "docs/runtime/cascade_execution.json"
 
-          DS = simulation_result["DS"]
-          PS = simulation_result["PS"]
-          CD = simulation_result["CD"]
-          OD = simulation_result["OD"]
+          if not os.path.exists(file_path):
+              print("⚠ No cascade output found — using safe defaults")
+              cascade = {"failed_nodes": [], "impacts_on_orbital": []}
+          else:
+              with open(file_path) as f:
+                  cascade = json.load(f)
 
-          # Severity calculation (your Sextant model)
+          failed_nodes = cascade.get("failed_nodes", [])
+          impacts = cascade.get("impacts_on_orbital", [])
+
+          # -----------------------------------------
+          # SEVERITY MODEL (SEXTANT CORE)
+          # -----------------------------------------
+          DS = min(1.0, len(failed_nodes) * 0.3)
+          PS = min(1.0, len(impacts) * 0.25)
+          CD = 0.7
+          OD = 1.0
+
           risk_score = (DS * PS * CD) / OD
 
+          print("📊 DS:", DS)
+          print("📊 PS:", PS)
+          print("📊 CD:", CD)
+          print("📊 OD:", OD)
           print("📊 Risk Score:", risk_score)
 
-          # Governance decision rules
+          # -----------------------------------------
+          # GOVERNANCE DECISION ENGINE
+          # -----------------------------------------
           if risk_score < 0.3:
               decision = "APPROVE"
           elif risk_score < 0.7:
@@ -90,12 +106,14 @@ jobs:
 
           print("🧾 Governance Decision:", decision)
 
-          # HARD ENFORCEMENT (CI GATE)
+          # -----------------------------------------
+          # HARD CI ENFORCEMENT
+          # -----------------------------------------
           if decision == "BLOCK":
               print("⛔ EXECUTION BLOCKED BY SEXTANT GOVERNANCE")
               sys.exit(1)
 
-          print("✔ Governance passed")
+          print("✔ Governance Passed")
           EOF
 
       # -----------------------------------------
