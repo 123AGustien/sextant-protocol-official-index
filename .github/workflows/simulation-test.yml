@@ -1,4 +1,4 @@
-name: Sextant Orbital Reprisory Simulation Test
+name: 🛰️ Sextant Orbital Reprisory Simulation Test
 
 on:
   workflow_dispatch:
@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       # -----------------------------------------
       # Checkout repository
       # -----------------------------------------
@@ -28,21 +29,33 @@ jobs:
           python-version: "3.11"
 
       # -----------------------------------------
-      # Install dependencies
+      # Install dependencies (future-proof hook)
       # -----------------------------------------
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
 
       # -----------------------------------------
-      # Fix Python import path
+      # Ensure repo is importable
       # -----------------------------------------
       - name: Configure PYTHONPATH
         run: echo "PYTHONPATH=." >> $GITHUB_ENV
 
       # -----------------------------------------
-      # Run simulation engine (manual only)
+      # Run Orbital Simulation Engine
       # -----------------------------------------
       - name: Run Orbital Simulation
         run: |
-          python orbital_reprisory/run_simulation.py
+          python orbital_reprisory/run_simulation.py \
+            --steps "${{ github.event.inputs.steps }}"
+
+      # -----------------------------------------
+      # Capture simulation output (required upgrade)
+      # -----------------------------------------
+      - name: Upload Simulation Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: orbital-simulation-output
+          path: |
+            output/
+            logs/
