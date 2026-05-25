@@ -1,4 +1,8 @@
-name: 🛰️ Sextant Orbital Reprisory Simulation Test
+ame- name: Fix Python import path (CI-safe)
+        run: |
+          echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
+ame: 🛰️ Sextant Orbital Reprisory Simulation Test
 
 on:
   workflow_dispatch:
