@@ -1,82 +1,74 @@
-from orbital_reprisory.core.orbital_engine import OrbitalEngine
-from orbital_reprisory.core.scenario_loader import ScenarioLoader
+import json
 import os
+from orbital_engine import OrbitalEngine
 
+# -----------------------------------------
+# Initialize engine
+# -----------------------------------------
+engine = OrbitalEngine()
 
-# -------------------------------------------------
-# SIMULATION RUNNER (v2 STABLE)
-# -------------------------------------------------
-class SimulationRunner:
+# -----------------------------------------
+# Build dependency graph
+# -----------------------------------------
+engine.add_node("A", criticality=5)
+engine.add_node("B", criticality=4)
+engine.add_node("C", criticality=3)
 
-    def __init__(self, scenario_path: str):
-        self.loader = ScenarioLoader()
-        self.engine = OrbitalEngine()
-        self.scenario_path = scenario_path
+engine.add_edge("A", "B")
+engine.add_edge("B", "C")
 
-    # -------------------------------------------------
-    # LOAD SCENARIO INTO ENGINE
-    # -------------------------------------------------
-    def setup(self) -> dict:
-        scenario = self.loader.load_from_file(self.scenario_path)
+# -----------------------------------------
+# Inject failure
+# -----------------------------------------
+engine.fail_node("A")
 
-        # Defensive validation (CI SAFE)
-        if not isinstance(scenario, dict):
-            raise ValueError("Scenario must be a dictionary")
+# -----------------------------------------
+# Run simulation
+# -----------------------------------------
+print("=== ORBITAL SIMULATION START ===")
 
-        # build nodes
-        for node in scenario.get("nodes", []):
-            if isinstance(node, dict):
-                self.engine.add_node(
-                    node.get("id"),
-                    node.get("criticality", 5)
-                )
-            else:
-                self.engine.add_node(node)
+history = []
+propagated_impacts = set()
 
-        # build edges
-        for dep in scenario.get("dependencies", []):
-            self.engine.add_edge(dep.get("from"), dep.get("to"))
+for i in range(3):
+    state = engine.step()
 
-        # initial failure
-        initial_failure = scenario.get("initial_failure")
-        if initial_failure:
-            self.engine.fail_node(initial_failure)
+    print(f"Step {state['time']}: {state['states']}")
 
-        return scenario
+    history.append({
+        "step": state["time"],
+        "states": state["states"]
+    })
 
-    # -------------------------------------------------
-    # EXECUTE SIMULATION
-    # -------------------------------------------------
-    def run(self, steps: int = 5) -> dict:
-        print("\n🧭 Orbital Reprisory Simulation Starting...\n")
+    # -----------------------------------------
+    # DETECT IMPACTED NODES (REAL DERIVATION)
+    # -----------------------------------------
+    for node, status in state["states"].items():
+        if status != "HEALTHY":
+            propagated_impacts.add(node)
 
-        final_state = {}
+print("=== SIMULATION END ===")
 
-        for _ in range(steps):
-            result = self.engine.step()
+# -----------------------------------------
+# OUTPUT DIRECTORY (CI LAYER)
+# -----------------------------------------
+os.makedirs("output", exist_ok=True)
+os.makedirs("logs", exist_ok=True)
 
-            final_state = result  # keep last snapshot
+# -----------------------------------------
+# SEXTANT CASCADE OUTPUT (DETERMINISTIC)
+# -----------------------------------------
+cascade_output = {
+    "domain": "orbital",
+    "failed_nodes": [n for n, s in state["states"].items() if s == "FAILED"],
+    "impacts_on_orbital": list(propagated_impacts),
+    "history": history
+}
 
-            print(f"Step {result.get('time')}")
-            print("States:", result.get("states", {}))
+with open("output/cascade_execution.json", "w") as f:
+    json.dump(cascade_output, f, indent=2)
 
-            if result.get("interventions"):
-                print("Interventions:", result["interventions"])
+with open("logs/run.log", "w") as f:
+    f.write("Orbital simulation completed successfully\n")
 
-            print("-" * 40)
-
-        print("\n✅ Simulation Complete\n")
-
-        return final_state
-
-
-# -------------------------------------------------
-# ENTRY POINT (CI SAFE + PATH RESOLVED)
-# -------------------------------------------------
-if __name__ == "__main__":
-    base_path = os.path.dirname(__file__)
-    scenario_path = os.path.join(base_path, "scenario.json")
-
-    runner = SimulationRunner(scenario_path)
-    runner.setup()
-    runner.run(steps=10)
+print("✔ Cascade output written to output/cascade_execution.json")
