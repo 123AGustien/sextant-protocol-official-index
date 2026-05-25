@@ -29,14 +29,14 @@ jobs:
           python-version: "3.11"
 
       # -----------------------------------------
-      # Install dependencies (future-proof hook)
+      # Install dependencies
       # -----------------------------------------
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
 
       # -----------------------------------------
-      # Ensure repo is importable
+      # Ensure repo importable
       # -----------------------------------------
       - name: Configure PYTHONPATH
         run: echo "PYTHONPATH=." >> $GITHUB_ENV
@@ -50,7 +50,56 @@ jobs:
             --steps "${{ github.event.inputs.steps }}"
 
       # -----------------------------------------
-      # Capture simulation output (required upgrade)
+      # SEVERITY + GOVERNANCE LAYER (NEW CORE)
+      # -----------------------------------------
+      - name: Sextant Severity & Governance Gate
+        run: |
+          python - << 'EOF'
+          import json
+          import sys
+
+          print("🧠 Loading simulation output...")
+
+          # Example placeholder (later replaced by real output file)
+          simulation_result = {
+              "DS": 0.8,
+              "PS": 0.9,
+              "CD": 0.7,
+              "OD": 1.2
+          }
+
+          DS = simulation_result["DS"]
+          PS = simulation_result["PS"]
+          CD = simulation_result["CD"]
+          OD = simulation_result["OD"]
+
+          # Severity calculation (your Sextant model)
+          risk_score = (DS * PS * CD) / OD
+
+          print("📊 Risk Score:", risk_score)
+
+          # Governance decision rules
+          if risk_score < 0.3:
+              decision = "APPROVE"
+          elif risk_score < 0.7:
+              decision = "MONITOR"
+          elif risk_score < 1.5:
+              decision = "RESTRICT"
+          else:
+              decision = "BLOCK"
+
+          print("🧾 Governance Decision:", decision)
+
+          # HARD ENFORCEMENT (CI GATE)
+          if decision == "BLOCK":
+              print("⛔ EXECUTION BLOCKED BY SEXTANT GOVERNANCE")
+              sys.exit(1)
+
+          print("✔ Governance passed")
+          EOF
+
+      # -----------------------------------------
+      # Capture simulation output
       # -----------------------------------------
       - name: Upload Simulation Artifact
         uses: actions/upload-artifact@v4
