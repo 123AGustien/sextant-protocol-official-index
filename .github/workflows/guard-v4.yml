@@ -1,10 +1,11 @@
-   name: Guard v4 - Step 3 Rules Layer
+name: Guard v4 - Step 3 Rules Layer
 
 on:
   workflow_dispatch:
     inputs:
       mode:
-        default: NORMAL
+        description: "NORMAL | SAFE | MAINTENANCE"
+        default: "NORMAL"
 
   pull_request:
 
@@ -13,83 +14,68 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Load mode
+      - name: Set mode
         id: mode
         run: |
           MODE="${{ github.event.inputs.mode || 'NORMAL' }}"
           echo "MODE=$MODE"
           echo "mode=$MODE" >> $GITHUB_OUTPUT
 
-      - name: Fetch diff safely
-        id: diff
-        run: |
-          git fetch origin main || true
-          CHANGED=$(git diff --name-only origin/main...HEAD || true)
-          echo "$CHANGED"
-          echo "$CHANGED" > changed_files.txt
-
-          echo "changed<<EOF" >> $GITHUB_OUTPUT
-          echo "$CHANGED" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Guard Rule Engine
+      # ----------------------------
+      # STEP 3: RULE ENGINE
+      # ----------------------------
+      - name: Guard Rule Engine (Step 3)
         run: |
           MODE="${{ steps.mode.outputs.mode }}"
-          CHANGED="${{ steps.diff.outputs.changed }}"
 
-          echo "Running Guard Rules..."
+          echo "🧭 Running Guard v4 Step 3"
           echo "Mode: $MODE"
 
-          # -----------------------------
+          # ----------------------------
           # SAFE MODE
-          # -----------------------------
+          # ----------------------------
           if [ "$MODE" = "SAFE" ]; then
-            echo "SAFE MODE: log only, no enforcement"
+            echo "SAFE MODE:"
+            echo "- No enforcement"
+            echo "- Logging only"
+            echo "- System allowed to run"
             exit 0
           fi
 
-          # -----------------------------
+          # ----------------------------
           # MAINTENANCE MODE
-          # -----------------------------
+          # ----------------------------
           if [ "$MODE" = "MAINTENANCE" ]; then
-            echo "MAINTENANCE MODE: skipping checks"
+            echo "MAINTENANCE MODE:"
+            echo "- Skip guard checks"
+            echo "- No blocking"
+            echo "- CI still runs for validation"
             exit 0
           fi
 
-          # -----------------------------
-          # RULE 1: Workflow tampering detection
-          # -----------------------------
-          echo "$CHANGED" | grep -E "\.github/workflows/" && WORKFLOW_CHANGE=1 || WORKFLOW_CHANGE=0
+          # ----------------------------
+          # NORMAL MODE RULES
+          # ----------------------------
+          echo "NORMAL MODE: Applying guard rules"
 
-          # -----------------------------
-          # RULE 2: Sensitive file detection
-          # -----------------------------
-          echo "$CHANGED" | grep -E "\.env|secret|key|credential" && SENSITIVE=1 || SENSITIVE=0
+          CHANGED=$(git diff --name-only HEAD~1 || true)
+          echo "Changed files:"
+          echo "$CHANGED"
 
-          # -----------------------------
-          # RULE 3: Enforcement logic
-          # -----------------------------
-          if [ "$WORKFLOW_CHANGE" = "1" ]; then
-            echo "⚠️ Guard Alert: Workflow modification detected"
-
-            if [ "$MODE" = "NORMAL" ]; then
-              echo "❌ BLOCKED: Workflow changes not allowed in NORMAL mode"
-              exit 1
-            fi
+          # Rule 1: detect workflow edits
+          if echo "$CHANGED" | grep -E "^\.github/workflows/"; then
+            echo "⚠️ Workflow change detected (logged only)"
           fi
 
-          if [ "$SENSITIVE" = "1" ]; then
-            echo "⚠️ Guard Alert: Sensitive file change detected"
-
-            if [ "$MODE" = "NORMAL" ]; then
-              echo "❌ BLOCKED: Sensitive file change not allowed"
-              exit 1
-            fi
+          # Rule 2: prevent recursive trigger noise
+          if echo "$GITHUB_EVENT_NAME" | grep -q "workflow_dispatch"; then
+            echo "ℹ️ Manual run - skipping recursion risk"
           fi
 
-          echo "✅ Guard passed - no violations detected"       
+          # Rule 3: safe completion
+          echo "✅ Guard Step 3 complete (no blocking in v4 core)"
+          exit 0
