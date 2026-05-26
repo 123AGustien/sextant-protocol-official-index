@@ -1,0 +1,82 @@
+name: 📊 Audit v4 - Observability & Compliance Log Layer
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Capture system snapshot
+        run: |
+          echo "📊 Audit Layer v4 starting..."
+          echo "Capturing repository state snapshot..."
+
+          mkdir -p audit_logs
+
+          echo "Repo: $GITHUB_REPOSITORY"
+          echo "Event: $GITHUB_EVENT_NAME"
+          echo "Actor: $GITHUB_ACTOR"
+          echo "Commit: $GITHUB_SHA"
+
+      - name: List workflow structure
+        run: |
+          echo "📁 Scanning workflow directory..."
+
+          if [ -d .github/workflows ]; then
+            ls -R .github/workflows > audit_logs/workflows_tree.txt
+          else
+            echo "No workflows directory found" > audit_logs/workflows_tree.txt
+          fi
+
+      - name: Capture changed files (if any)
+        run: |
+          echo "🔍 Detecting changed files..."
+
+          git fetch origin main || true
+
+          BASE=$(git rev-parse HEAD~1 2>/dev/null || echo "")
+          HEAD=$(git rev-parse HEAD)
+
+          if [ -n "$BASE" ]; then
+            git diff --name-only $BASE $HEAD > audit_logs/changed_files.txt || true
+          else
+            echo "No previous commit baseline available" > audit_logs/changed_files.txt
+          fi
+
+      - name: Generate audit report
+        run: |
+          cat <<EOF > audit_logs/audit_report.json
+          {
+            "system": "Sextant Orbital Resilience Framework",
+            "module": "Audit v4",
+            "purpose": "observability_only",
+            "repository": "${GITHUB_REPOSITORY}",
+            "event": "${GITHUB_EVENT_NAME}",
+            "actor": "${GITHUB_ACTOR}",
+            "commit": "${GITHUB_SHA}",
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+
+      - name: Upload audit artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-v4-report
+          path: audit_logs/
+
+      - name: Completion log
+        run: |
+          echo "✅ Audit v4 completed"
+          echo "📊 No enforcement actions taken"
+          echo "📁 Logs stored as artifacts only"
