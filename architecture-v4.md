@@ -6,10 +6,10 @@
 
 This document defines the **high-level architecture of Sextant Protocol V4**, a CI/CD governance and resilience simulation framework designed for:
 
-- workflow integrity validation
-- audit logging and traceability
-- safe execution of orchestration pipelines
-- prevention of CI failure loops
+- workflow integrity validation  
+- audit logging and traceability  
+- safe execution of orchestration pipelines  
+- prevention of CI failure loops  
 
 ---
 
