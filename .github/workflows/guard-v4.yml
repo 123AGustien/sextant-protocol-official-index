@@ -1,0 +1,35 @@
+name: Guard v4
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        default: NORMAL
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Guard v4
+        run: |
+          MODE="${{ github.event.inputs.mode || 'NORMAL' }}"
+          echo "MODE=$MODE"
+
+          if [ "$MODE" = "SAFE" ]; then
+            echo "SAFE MODE - log only"
+            exit 0
+          fi
+
+          if [ "$MODE" = "MAINTENANCE" ]; then
+            echo "MAINTENANCE MODE - skip enforcement"
+            exit 0
+          fi
+
+          echo "NORMAL MODE - basic scan"
+
+          git diff --name-only HEAD~1 || true
+          echo "done"
+          exit 0
