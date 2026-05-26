@@ -1,5 +1,4 @@
-name: Guard v4
-
+   name: Guard v4 - Step 3 Rules Layer
 
 on:
   workflow_dispatch:
@@ -8,30 +7,89 @@ on:
         default: NORMAL
 
   pull_request:
+
 jobs:
   guard:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Run Guard v4
+      - name: Load mode
+        id: mode
         run: |
           MODE="${{ github.event.inputs.mode || 'NORMAL' }}"
           echo "MODE=$MODE"
+          echo "mode=$MODE" >> $GITHUB_OUTPUT
 
+      - name: Fetch diff safely
+        id: diff
+        run: |
+          git fetch origin main || true
+          CHANGED=$(git diff --name-only origin/main...HEAD || true)
+          echo "$CHANGED"
+          echo "$CHANGED" > changed_files.txt
+
+          echo "changed<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Guard Rule Engine
+        run: |
+          MODE="${{ steps.mode.outputs.mode }}"
+          CHANGED="${{ steps.diff.outputs.changed }}"
+
+          echo "Running Guard Rules..."
+          echo "Mode: $MODE"
+
+          # -----------------------------
+          # SAFE MODE
+          # -----------------------------
           if [ "$MODE" = "SAFE" ]; then
-            echo "SAFE MODE - log only"
+            echo "SAFE MODE: log only, no enforcement"
             exit 0
           fi
 
+          # -----------------------------
+          # MAINTENANCE MODE
+          # -----------------------------
           if [ "$MODE" = "MAINTENANCE" ]; then
-            echo "MAINTENANCE MODE - skip enforcement"
+            echo "MAINTENANCE MODE: skipping checks"
             exit 0
           fi
 
-          echo "NORMAL MODE - basic scan"
+          # -----------------------------
+          # RULE 1: Workflow tampering detection
+          # -----------------------------
+          echo "$CHANGED" | grep -E "\.github/workflows/" && WORKFLOW_CHANGE=1 || WORKFLOW_CHANGE=0
 
-          git diff --name-only HEAD~1 || true
-          echo "done"
-          exit 0
+          # -----------------------------
+          # RULE 2: Sensitive file detection
+          # -----------------------------
+          echo "$CHANGED" | grep -E "\.env|secret|key|credential" && SENSITIVE=1 || SENSITIVE=0
+
+          # -----------------------------
+          # RULE 3: Enforcement logic
+          # -----------------------------
+          if [ "$WORKFLOW_CHANGE" = "1" ]; then
+            echo "⚠️ Guard Alert: Workflow modification detected"
+
+            if [ "$MODE" = "NORMAL" ]; then
+              echo "❌ BLOCKED: Workflow changes not allowed in NORMAL mode"
+              exit 1
+            fi
+          fi
+
+          if [ "$SENSITIVE" = "1" ]; then
+            echo "⚠️ Guard Alert: Sensitive file change detected"
+
+            if [ "$MODE" = "NORMAL" ]; then
+              echo "❌ BLOCKED: Sensitive file change not allowed"
+              exit 1
+            fi
+          fi
+
+          echo "✅ Guard passed - no violations detected"       
