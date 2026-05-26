@@ -1,11 +1,13 @@
 name: Guard v4
 
+
 on:
   workflow_dispatch:
     inputs:
       mode:
         default: NORMAL
 
+  pull_request:
 jobs:
   guard:
     runs-on: ubuntu-latest
