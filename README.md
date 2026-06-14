@@ -1,3 +1,57 @@
+# 🧭 Sextant Prime Index
+
+This repository is the **routing and navigation layer** of the Sextant Protocol ecosystem.
+
+It is NOT the main system.
+
+---
+
+## 🎯 Primary Entry Point (Master Index)
+
+All users should start here:
+
+👉 https://github.com/123AGustien/sextant-protocol-official-index
+
+GitHub
+
+---
+
+## 🔁 System Routing Behavior
+
+The Prime Index functions as:
+
+- Navigation map for all Sextant repositories  
+- System routing and coordination layer  
+- Entry resolver for correct module selection  
+
+---
+
+## 🧭 Relationship to Master Index
+
+- **Master Index = Public Front Door**
+- **Prime Index = Internal Routing Layer**
+
+The Prime Index automatically directs users toward the Master Index when external access is required.
+
+---
+
+## 📌 Core Principle
+
+Sextant Protocol is a layered system architecture:
+
+- Entry Layer → Master Index  
+- Routing Layer → Prime Index  
+- Execution Layer → Console + Engines  
+- Simulation Layer → Scenario Systems  
+
+---
+
+## 🚀 Main System Repository
+
+Core operational system:
+
+👉 https://github.com/123AGustien/sextant-resilience-operations-console
+
 # 🧭 Sextant Protocol
 
 A structured simulation framework for evaluating how complex systems behave under dependency failure, cascading risk propagation, and governance-constrained decision routing.
