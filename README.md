@@ -381,7 +381,40 @@ These repositories represent conceptual simulation frameworks for stress modelli
 Used for:
 - Dependency graph simulation  
 - Failure propagation analysis  
-- Systemic risk modelling  
+- Systemic risk modelling
+
+- Cascade Simulation Core
+
+- "Sextant-Protocol" (https://github.com/123AGustien/Sextant-Protocol) → Core deterministic simulation engine of the Sextant Protocol ecosystem
+
+Purpose
+
+The Cascade Simulation Core provides a deterministic sandbox environment for modelling complex system dependencies, failure propagation pathways, and systemic risk behaviour.
+
+Core Capabilities
+
+- Dependency graph simulation
+- Failure propagation analysis
+- Systemic risk modelling
+- Deterministic scenario execution
+- Replayable simulation outputs
+- Stress-testing of interconnected systems
+
+Development Methodology
+
+The engine is developed using a structured engineering lifecycle:
+
+1. Concept Definition
+2. Scenario Design
+3. Internal Development
+4. Self-Testing
+5. Audit Review
+6. Version Tagging
+7. Public Publication
+
+Position Within the Sextant Ecosystem
+
+This repository serves as the simulation core supporting resilience analysis across the wider Sextant Protocol ecosystem, including observability, reconstruction, execution-domain modelling, communications resilience, and operational command systems.
 
 ---
 
