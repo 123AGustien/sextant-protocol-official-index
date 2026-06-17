@@ -22,7 +22,11 @@ The Prime Index functions as:
 
 - Navigation map for all Sextant repositories  
 - System routing and coordination layer  
-- Entry resolver for correct module selection  
+- Entry resolver for correct module selection
+
+- most likely URL sources for it are:
+123agustien.github.io
+123agustien.github.io
 
 ---
 
